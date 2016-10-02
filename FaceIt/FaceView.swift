@@ -8,11 +8,20 @@
 
 import UIKit
 
+@IBDesignable
 class FaceView: UIView {
+    @IBInspectable
     var scale: CGFloat = 0.90
+    @IBInspectable
     var mouthCurvature: Double = 1.0    // 1 full smile, -1 full frown
+    @IBInspectable
     var eyesOpen: Bool = true
+    @IBInspectable
     var eyeBrowTit: Double = -0.5    // -1 full furrow, 1 fully relaxed
+    @IBInspectable
+    var color: UIColor = UIColor.blue
+    @IBInspectable
+    var lineWidth: CGFloat = 5.0
     
     fileprivate var skullRadius: CGFloat {
         return min(bounds.size.width, bounds.size.height) / 2 * scale
@@ -43,7 +52,7 @@ class FaceView: UIView {
             endAngle: CGFloat(2 * M_PI),
             clockwise: false
         )
-        path.lineWidth = 5.0
+        path.lineWidth = lineWidth
         return path
     }
     
@@ -67,7 +76,7 @@ class FaceView: UIView {
             let path = UIBezierPath()
             path.move(to: CGPoint(x: eyeCenter.x - eyeRadius, y: eyeCenter.y))
             path.addLine(to: CGPoint(x: eyeCenter.x + eyeRadius, y: eyeCenter.y))
-            path.lineWidth = 5.0
+            path.lineWidth = lineWidth
             return path
         }
     }
@@ -88,7 +97,7 @@ class FaceView: UIView {
         let path = UIBezierPath()
         path.move(to: start)
         path.addCurve(to: end, controlPoint1: cp1, controlPoint2: cp2)
-        path.lineWidth = 5.0
+        path.lineWidth = lineWidth
         
         return path
     }
@@ -108,14 +117,14 @@ class FaceView: UIView {
         let path = UIBezierPath()
         path.move(to: browStart)
         path.addLine(to: browEnd)
-        path.lineWidth = 5.0
+        path.lineWidth = lineWidth
         return path
     }
     
     // Only override drawRect: if you perform custom drawing.
     // An empty implementation adversely affects performance during animation.
     override func draw(_ rect: CGRect) {
-        UIColor.blue.set()   // doing both setFill() and setStroke()
+        color.set()
         pathForCircleCenteredAtPoint(skullCenter, withRadius: skullRadius).stroke()
         pathForBrow(.left).stroke()
         pathForBrow(.right).stroke()
