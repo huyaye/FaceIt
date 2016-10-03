@@ -19,11 +19,21 @@ class FaceView: UIView {
     var eyesOpen: Bool = true  { didSet { setNeedsDisplay() } }
     // -1 full furrow, 1 fully relaxed
     @IBInspectable
-    var eyeBrowTilt: Double = -0.5
+    var eyeBrowTilt: Double = -0.5 { didSet { setNeedsDisplay() } }
     @IBInspectable
     var color: UIColor = UIColor.blue  { didSet { setNeedsDisplay() } }
     @IBInspectable
     var lineWidth: CGFloat = 5.0  { didSet { setNeedsDisplay() } }
+    
+    func changeScale(recognizer: UIPinchGestureRecognizer) {
+        switch recognizer.state {
+            case .changed,.ended:
+                scale *= recognizer.scale
+                recognizer.scale = 1.0
+            default:
+            break
+        }
+    }
     
     fileprivate var skullRadius: CGFloat {
         return min(bounds.size.width, bounds.size.height) / 2 * scale
