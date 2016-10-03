@@ -19,7 +19,7 @@ class FaceView: UIView {
     var eyesOpen: Bool = true  { didSet { setNeedsDisplay() } }
     // -1 full furrow, 1 fully relaxed
     @IBInspectable
-    var eyeBrowTit: Double = -0.5
+    var eyeBrowTilt: Double = -0.5
     @IBInspectable
     var color: UIColor = UIColor.blue  { didSet { setNeedsDisplay() } }
     @IBInspectable
@@ -105,7 +105,7 @@ class FaceView: UIView {
     }
     
     fileprivate func pathForBrow(_ eye: Eye) -> UIBezierPath {
-        var tilt = eyeBrowTit
+        var tilt = eyeBrowTilt
         switch eye {
         case .left: tilt *= -1.0
         case .right: break
