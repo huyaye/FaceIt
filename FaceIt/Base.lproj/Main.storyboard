@@ -21,6 +21,7 @@
                             <view contentMode="redraw" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KUF-r6-GzG" customClass="FaceView" customModule="FaceIt" customModuleProvider="target">
                                 <frame key="frameInset" width="375" height="600"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="lineWidth">
                                         <real key="value" value="1"/>
@@ -36,6 +37,9 @@
                                         <real key="value" value="0.5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="8V1-h0-PMP" appends="YES" id="qAG-Rq-oJM"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -51,6 +55,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="8V1-h0-PMP">
+                    <connections>
+                        <action selector="toggleEyes:" destination="BYZ-38-t0r" id="t1L-qU-SaU"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="380" y="336.88155922038982"/>
         </scene>

@@ -33,6 +33,16 @@ class FaceViewController: UIViewController
         }
     }
 
+    @IBAction func toggleEyes(_ sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            switch expression.eyes {
+            case .Open: expression.eyes = .Closed
+            case .Closed: expression.eyes = .Open
+            case .Squinting: break
+            }
+        }
+    }
+    
     func increaseHappiness() {
         expression.mouth = expression.mouth.happierMouth()
     }
